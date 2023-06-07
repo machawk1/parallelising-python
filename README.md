@@ -16,7 +16,7 @@ After discussing Cython, there is a short example with Numba vectorize, which ca
 
 By default, NumPy will dispatch the computations to an efficient BLAS (basic linear algebra subproblem) and LAPACK (Linear Algebra PACKage) implementation. BLAS and LAPACK routines are very efficient linear algebra routines that are implemented by groups of people that are experts getting as much speed as humanly possible out of the CPU, and we cannot compete with those for linear algebra computations.
 
-A benefit and downside with NumPy is that it will likely parallelise the code for you without your knowledge. Try to compute the matrix product between two large matrices and look at your CPU load. It will likely use all of your CPU hardware threads (hardware threads are essentially cores).
+A benefit and downside with NumPy is that it will likely parallelize the code for you without your knowledge. Try to compute the matrix product between two large matrices and look at your CPU load. It will likely use all of your CPU hardware threads (hardware threads are essentially cores).
 
 ## Moving the parallelism to the outer loop
 
@@ -111,7 +111,7 @@ import numpy as np
 
 Python does not support parallel threading. This means that each Python process can only do one thing at a time. The reason for this lies with the way Python code is run on your computer. Countless hours has been spent trying to remove this limitation, but all sucessfull attempts severly impaired the speed of the language (the most well known attempt is Larry Hasting's [gilectomy](https://github.com/larryhastings/gilectomy)). 
 
-Since we cannot run code in parallel within a single process, we need to start new processes for each task we wish to compute in parallel and send the relevant information to these processes. This leads to a lot of overhead, and if we hope to have any performance gain, then we should parallelise substantial tasks if we wish to do it with multiple processes.
+Since we cannot run code in parallel within a single process, we need to start new processes for each task we wish to compute in parallel and send the relevant information to these processes. This leads to a lot of overhead, and if we hope to have any performance gain, then we should parallelize substantial tasks if we wish to do it with multiple processes.
 
 ### The best approach: Joblib
 
@@ -132,7 +132,7 @@ print(numbers1)
     [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
 
-Here we see how Joblib can help us parallelise simple for loops. We wrap what we wish to compute in a function and use it in a list comprehension. The `n_jobs` argument specifies how many processes to spawn. If it is a positive number (1, 2, 4, etc.) then it is the number of processes to spawn and if it is a negative number then joblib will spawn (n_cpu_threads + 1 - n_processes). Thus `n_jobs=-1` will spawn as many processes as there are CPU threads available, `n_jobs=-2` will spawn n-1 CPU threads, etc. 
+Here we see how Joblib can help us parallelize simple for loops. We wrap what we wish to compute in a function and use it in a list comprehension. The `n_jobs` argument specifies how many processes to spawn. If it is a positive number (1, 2, 4, etc.) then it is the number of processes to spawn and if it is a negative number then joblib will spawn (n_cpu_threads + 1 - n_processes). Thus `n_jobs=-1` will spawn as many processes as there are CPU threads available, `n_jobs=-2` will spawn n-1 CPU threads, etc. 
 
 I recommend setting `n_jobs=-2` so you have one CPU thread free to surf the web while you run hard-core experiments on your computer.
 
@@ -423,7 +423,7 @@ print("Numba")
 
 We see that the numba compiled code is much faster than the plain python code (more than x100). The downside with writing code this way is that error messages are cryptic  and a function that is JIT compiled can only call a subset of all Python, NumPy and SciPy functions in addition to other JIT compiled functions. See the documentation for more info on this.
 
-However, we can also parallelise code with Numba, using the `numba.prange` (parallel range) function. This code is cheekily stolen from the [documentation](https://numba.pydata.org/numba-doc/0.11/prange.html)
+However, we can also parallelize code with Numba, using the `numba.prange` (parallel range) function. This code is cheekily stolen from the [documentation](https://numba.pydata.org/numba-doc/0.11/prange.html)
 
 
 ```python
