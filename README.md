@@ -695,3 +695,9 @@ plt.show()
 
 ![Mandelbrot set](resources/mandelbrot.png)
 
+
+## Credits
+
+Contents of this repo based off of work by [#yngvem](https://github.com/yngvem/parallelising-python).
+
+
