@@ -698,6 +698,6 @@ plt.show()
 
 ## Credits
 
-Contents of this repo based off of work by [#yngvem](https://github.com/yngvem/parallelising-python).
+Contents of this repo based off of work by [@yngvem](https://github.com/yngvem/parallelising-python).
 
 
