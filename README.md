@@ -1,4 +1,4 @@
-# Parallelising Python code
+# Parallelizing Python code
 
 It is sometimes stated that parallel code is difficult in Python. However, for most scientific applications, we can achieve the level of parallelism without much effort. In this notebook I will show some simple ways to get parallel code execution in Python.
 
@@ -378,7 +378,7 @@ print([finished[i] for i in range(10)])
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
-## Parallelising with Numba
+## Parallelizing with Numba
 
 Numba is a magical tool that will let us write Python code that is just in time compiled (JIT) to machine code using LLVM. This means that we can get C-speed with our Python code!
 
@@ -459,7 +459,7 @@ print("\nParallel Numba")
     28.7 µs ± 462 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 
 
-Here, we see that the performance actually deteriorates by parallising the code! This is because of the extra overhead needed to organise multiple workers. However, sometimes parallelising code this way can lead to significant speedups (especially if each iteration is costly).
+Here, we see that the performance actually deteriorates by parallising the code! This is because of the extra overhead needed to organise multiple workers. However, sometimes parallelizing code this way can lead to significant speedups (especially if each iteration is costly).
 
 We can use Cython to reduce the overhead that we experience with the parallel sum.
 
@@ -592,8 +592,8 @@ Thus, if Numba works, it is often as good as, if not better than Cython. You sho
 
 Long functions are often easier to implement in Cython and small ones are often best implemented in Numba. A big downside with Cython (that cannot be stressed enough) is that it adds huge overhead for building and distributing the code. I therefore discourage the use of Cython for code that will be made public unless all other options are tested first.
 
-## Vectorisation with Numba
-Finally, we will look at vectorisation of functions with Numba. Vectorisation is when we wish to apply the same function to all elements of an array. For example, the `exp` function in NumPy is a vectorised function.
+## Vectorization with Numba
+Finally, we will look at vectorization of functions with Numba. Vectorization is when we wish to apply the same function to all elements of an array. For example, the `exp` function in NumPy is a vectorized function.
 
 Let us create a vectorised function to compute the Mandelbrot set. 
 
